@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标按键、键值获取</title>
+    <script src="jquery1.1.1.min.js"></script>
+</head>
+<body>
+
+
+<div class="btn">按钮</div>
+<input type="text" value="nihao" class="btn222">
+
+<script>
+
+    $(function(){
+
+        $(".btn").bind("mousedown",function(event){
+            alert(event.which);  //鼠标值获取，左中右分别为：1,2,3
+        });
+
+        $(".btn222").bind("keyup",function(event){
+            alert(event.which);    //键值获取
+        });
+
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分数表</title>
+    <script src="jquery1.1.1.min.js"></script>
+    <style>
+        .red{background:red;}
+        .gray1{background:#cccccc;}
+        .gray2{background:#666666;}
+
+    </style>
+</head>
+<body>
+
+<table border="1" id="table">
+    <tr>
+        <th>姓名</th>
+        <th>学号</th>
+        <th>性别</th>
+        <th>语文</th>
+        <th>数学</th>
+        <th>英语</th>
+        <th>总成绩</th>
+    </tr>
+
+</table>
+
+
+<script>
+    $(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "datatable.json",
+            dataType: "json",
+            success : function(data){
+                var html="";
+                $.each(data,function (i,trdata) {
+                    var  scroll = parseFloat(trdata['语文'])+ parseFloat(trdata['数学'])+parseFloat(trdata['英语']);
+                    html+="<tr class='row'>" +
+                            "<td>"+trdata['姓名']+"</td>" +
+                            "<td>"+trdata['学号']+"</td>" +
+                            "<td>"+trdata['性别']+"</td>" +
+                            "<td class='sco1'>"+trdata['语文']+"</td>" +
+                            "<td class='sco2'>"+trdata['数学']+"</td>" +
+                            "<td class='sco3'>"+trdata['英语']+"</td>" +
+                            "<td class='scoall'>"+scroll+"</td>" +
+                            "</tr>";
+                });
+                $("#table").append(html);
+                $("#table .row:odd").addClass("gray1");
+                $("#table .row:even").addClass("gray2");
+
+
+    //          $("#table").bind("click","table .row",function (ev) {     //该方法有效
+    //                $(ev.target).parent().css("background","red");
+    //          })
+    //          $("#table .row").click(function () {     //该方法有效
+    //               $(this).css("background","red");
+    //          })
+
+            }
+
+        });
+
+        $("#table").bind("click","table .row",function (ev) {  //该方法有效
+            $(ev.target).parent().css("background","red");
+        })
+
+
+//        $("#table .row").click(function () {     //该方法无效
+//            $(this).css("background","red");
+//        })
+
+
+    })
+</script>
+
+</body>
+</html>

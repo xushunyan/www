@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超链接提示效果（模拟title属性）</title>
+    <script src="jquery1.1.1.min.js"></script>
+
+    <style>
+
+        .box{width:200px;height:40px;line-height:40px;text-align: center;
+            background:palegreen;border:1px solid powderblue;cursor:pointer;
+            border-radius:5px;}
+        .aaa{color:#999999;text-decoration:none;}
+
+        .title{border:1px solid powderblue;padding:5px 10px; border-radius:3px;
+            background:#D9D9D9;color:#333333;position: absolute;}
+    </style>
+</head>
+<body>
+
+
+<div class="box">
+    <a href="" class="aaa" title="我是一个超链接" >我是一个超链接</a>
+</div>
+
+<p>拓展练习：图片提示效果</p>
+
+<script>
+
+    $(function(){
+
+        var x=10;
+        var y=20;
+        $(".aaa").mouseover(function(){
+            this.tiText=this.title;
+            this.title="";
+            var tiTool=$("<span class='title'>"+this.tiText+"</span>");
+            $("body").append(tiTool);
+            $(".title").css({
+                "top":(e.pageY+y)+"px",
+                "left":(e.pageX+x)+"px"
+            }).show("fast");
+        }).mouseout(function () {
+            this.title= this.tiText;
+            $(".title").remove();
+        }).mousemove(function (e) {
+            $(".title").css({
+                "top":(e.pageY+y)+"px",
+                "left":(e.pageX+x)+"px"
+            });
+
+        });
+
+
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    function fn(n){
+        var b=[];
+        var Rand =0;
+        for(var i=0;i<n;){
+            Rand = parseInt(2+Math.random()*7);   //取[2,8]之间的随机整数
+            if(b.indexOf(Rand)<0){
+                b.push(Rand);        //并且去重
+                i++;
+            }
+
+        }
+    return  b;
+    };
+
+    alert(  fn(4) )
+
+
+</script>
+</body>
+</html>

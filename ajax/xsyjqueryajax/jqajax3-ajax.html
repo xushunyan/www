@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery1.1.1.min.js"></script>
+</head>
+<body>
+
+<table border="1" id="table">
+    <tr>
+        <th>姓名</th>
+        <th>内容</th>
+    </tr>
+
+</table>
+
+
+<script>
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "data.json",
+            dataType: "json",
+            success : function(data){
+                var html="";
+                $.each(data,function (i,trdata) {
+                    html+="<tr><td>"+trdata['username']+"</td><td>"+trdata['content']+"</td></tr>";
+                });
+                $("#table").append(html);
+
+            }
+        });
+    })
+</script>
+
+</body>
+</html>
